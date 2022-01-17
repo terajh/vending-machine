@@ -25,7 +25,7 @@ const LogScreen = styled.div`
   border: 1px solid black;
 `;
 const ScreenWrap = styled.div`
-  width: 35%;
+  width: 30%;
   padding: 20px;
   border: 10px solid black;
   box-sizing: border-box;
@@ -46,7 +46,10 @@ const Monitor = props => {
       })
       .map(item => {
         if (curChange > 0 && curChange >= item.won) {
-          const result = { won: item.won, count: item.count + parseInt(curChange / item.won) };
+          const result = {
+            won: item.won,
+            count: item.count + parseInt(curChange / item.won),
+          };
           curChange -= item.won * parseInt(curChange / item.won);
           return result;
         } else return item;
@@ -54,7 +57,7 @@ const Monitor = props => {
   };
   return (
     <ScreenWrap className="Monitor">
-      <ChangeScreen className="changes">{change}원</ChangeScreen>
+      <ChangeScreen className="changes">{change} 원</ChangeScreen>
       <SubmitDiv onClick={clickSubmit}>반환</SubmitDiv>
       <LogScreen>
         {log.map((item, idx) => {

@@ -6,62 +6,65 @@ const ItemWrap = styled.div`
   box-sizing: border-box;
   border: 10px solid black;
   flex-wrap: wrap;
+  width: 50%;
   align-content: flex-start;
   justify-content: center;
 `;
 const OneItem = styled.div`
   width: 150px;
-  .name,
-  .price {
-    text-align: center;
-  }
-  .name {
-    border: 1px solid black;
-    pointer-events: none;
-  }
-  .select {
-    border: 3px solid red;
-    pointer-events: auto;
-    cursor: pointer;
-  }
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 15px;
+  box-sizing: border-box;
   margin-bottom: 15px;
+`;
+const ItemName = styled.div`
+  width: 150px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border: 1px solid black;
+  box-sizing: border-box;
+  pointer-events: none;
+`;
+const SelectedItemName = styled.div`
+  width: 150px;
+  height: 35px;
+  line-height: 35px;
+
+  text-align: center;
+  border: 3px solid red;
+  pointer-events: auto;
+  box-sizing: border-box;
+  cursor: pointer;
+`;
+const ItemPrice = styled.div`
+  text-align: center;
 `;
 
 const Item = props => {
-  const { item, change } = props.info;
+  const { change } = props.info;
+  const { price, name, count } = props.info.item;
   const { onSelect } = props;
+  const onClickItem = () => {
+    onSelect(price, name, count);
+  };
   return (
     <OneItem>
-      <div
-        className={"name" + (change >= item.price ? " select" : "")}
-        onClick={e => {
-          onSelect(item.price, item.name, item.count);
-        }}
-      >
-        {item.name}
-      </div>
-      <div className="price">{item.price}</div>
+      {change >= price && count > 0 ? (
+        <SelectedItemName onClick={onClickItem}>{name}</SelectedItemName>
+      ) : (
+        <ItemName onClick={onClickItem}>{name}</ItemName>
+      )}
+      <ItemPrice>{price}</ItemPrice>
     </OneItem>
   );
 };
 // 상품 화면
 const Items = props => {
-  const { change, onClick, onLog } = props;
-  const [items, setItems] = useState([
-    { name: "콜라", price: 500, count: 3 },
-    { name: "사이다", price: 1000, count: 3 },
-    { name: "콜라", price: 800, count: 3 },
-    { name: "사이다", price: 500, count: 3 },
-    { name: "콜라", price: 500, count: 3 },
-    { name: "사이다", price: 500, count: 3 },
-    { name: "사이다", price: 500, count: 3 },
-    { name: "사이다", price: 500, count: 3 },
-  ]);
+  const { change, onClick, onLog, items, setItems } = props;
 
-  const selectItem = async (price, name, count) => {
+  const selectItem = (price, name, count) => {
     if (count === 0) {
       onLog(`${name} 재고가 없음`);
       return;

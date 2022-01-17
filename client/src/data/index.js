@@ -1,0 +1,33 @@
+export const billList = [
+  { won: 10000, count: 3 },
+  { won: 5000, count: 4 },
+  { won: 1000, count: 4 },
+  { won: 500, count: 5 },
+  { won: 100, count: 3 },
+  { won: 50, count: 4 },
+  { won: 10, count: 5 },
+];
+
+export const itemList = [
+  { name: "콜라", price: 500, count: 3 },
+  { name: "사이다", price: 1000, count: 3 },
+  { name: "콜라333", price: 800, count: 3 },
+  { name: "사이다1", price: 500, count: 3 },
+  { name: "콜라2", price: 500, count: 3 },
+  { name: "사이다3", price: 800, count: 3 },
+  { name: "사이다4", price: 700, count: 3 },
+  { name: "사이다5", price: 900, count: 3 },
+  { name: "콜라123", price: 500, count: 3 },
+  { name: "사이다", price: 1000, count: 3 },
+  { name: "콜라0", price: 800, count: 3 },
+  { name: "사이다12", price: 500, count: 3 },
+  { name: "콜라22", price: 500, count: 3 },
+  { name: "사이다30", price: 800, count: 3 },
+  { name: "사이다40", price: 700, count: 3 },
+  { name: "사이다51", price: 900, count: 3 },
+  { name: "사이다11", price: 5000, count: 3 },
+  { name: "콜라24", price: 5000, count: 3 },
+  { name: "사이다32", price: 8000, count: 3 },
+  { name: "사이다43", price: 7000, count: 3 },
+  { name: "사이다51", price: 9000, count: 3 },
+];

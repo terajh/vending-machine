@@ -1,25 +1,68 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-const LogScreen = styled.div`
-    margin-top: 20px;
-    overflow-y: hidden;
-`;
-const ChangeScreen = styled.div``;
 
-const ScreenWrap = styled.div`
-    width: 300px;
+const ChangeScreen = styled.div`
+  height: 30px;
+  line-height: 30px;
+  padding-right: 30px;
+  box-sizing: border-box;
+  text-align: right;
+  border: 1px solid black;
 `;
+const SubmitDiv = styled.div`
+  margin-top: 20px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid black;
+`;
+const LogScreen = styled.div`
+  margin-top: 20px;
+  height: 150px;
+  overflow-y: scroll;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid black;
+`;
+const ScreenWrap = styled.div`
+  width: 35%;
+  padding: 20px;
+  border: 10px solid black;
+  box-sizing: border-box;
+`;
+
 // 진행 화면
-const Monitor = (props) => {
-    const changes = props.change;
-    // props.onChange(1000);
-    return (
-        <ScreenWrap className="Monitor">
-            <ChangeScreen className="changes">{changes}원</ChangeScreen>
-            <div>반환</div>
-            <LogScreen>스크린</LogScreen>
-        </ScreenWrap>
-    );
+const Monitor = props => {
+  const { change, log, onChange, bills, onLog } = props;
+  const clickSubmit = e => {
+    onChange(0, -1, transBills(bills, change));
+    onLog("잔돈 반환됨");
+  };
+  const transBills = (bills, change) => {
+    let curChange = change;
+    return bills
+      .sort((a, b) => {
+        return b.won - a.won;
+      })
+      .map(item => {
+        if (curChange > 0 && curChange >= item.won) {
+          const result = { won: item.won, count: item.count + parseInt(curChange / item.won) };
+          curChange -= item.won * parseInt(curChange / item.won);
+          return result;
+        } else return item;
+      });
+  };
+  return (
+    <ScreenWrap className="Monitor">
+      <ChangeScreen className="changes">{change}원</ChangeScreen>
+      <SubmitDiv onClick={clickSubmit}>반환</SubmitDiv>
+      <LogScreen>
+        {log.map((item, idx) => {
+          return <div key={idx}>{item}</div>;
+        })}
+      </LogScreen>
+    </ScreenWrap>
+  );
 };
 
 export default Monitor;

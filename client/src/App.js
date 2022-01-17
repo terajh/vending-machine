@@ -1,6 +1,8 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Wallet, Items, Monitor } from "./component";
+import { billList, itemList } from "./data";
+import { transBills } from "./utils/bill";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -8,25 +10,32 @@ const Container = styled.div`
   justify-content: space-around;
   width: 100%;
 `;
-const App = () => {
-  const [change, setChange] = useState(0);
+function App() {
+  const mounted = useRef(false); // componentDidUpdate 위해 선언
   const [clickedBill, setClickedBill] = useState(-1);
+  const [change, setChange] = useState(0);
+  const [bills, setBills] = useState(billList);
+  const [items, setItems] = useState(itemList);
   const [log, setLog] = useState([]);
-  const [bills, setBills] = useState([
-    { won: 10000, count: 3 },
-    { won: 5000, count: 4 },
-    { won: 1000, count: 4 },
-    { won: 500, count: 5 },
-    { won: 100, count: 3 },
-    { won: 50, count: 4 },
-    { won: 10, count: 5 },
-  ]);
 
+  // componentDidMount
   useEffect(() => {
-    setTimeout(() => {
-      clickSubmit();
-    }, 2000);
-  }, [change]);
+    console.log("mount");
+  }, []);
+
+  // componentDidUpdate
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      setTimeout(() => {
+        setChange(0);
+        setClickedBill(-1);
+        setBills(transBills(bills, change));
+        setLog(["잔돈 반환됨", ...log]);
+      }, 2000);
+    }
+  }, [items]);
 
   const onChange = (val, clickedWon, newBills) => {
     setChange(val);
@@ -34,26 +43,10 @@ const App = () => {
     setBills(newBills);
   };
   const onClickItem = price => {
+    if (mounted.current) return;
     setChange(change - price);
   };
-  const clickSubmit = () => {
-    onChange(0, -1, transBills(bills, change));
-    onLog("잔돈 반환됨");
-  };
-  const transBills = (bills, change) => {
-    let curChange = change;
-    return bills
-      .sort((a, b) => {
-        return b.won - a.won;
-      })
-      .map(item => {
-        if (curChange > 0 && curChange >= item.won) {
-          const result = { won: item.won, count: item.count + parseInt(curChange / item.won) };
-          curChange -= item.won * parseInt(curChange / item.won);
-          return result;
-        } else return item;
-      });
-  };
+
   const onLog = message => {
     setLog([message, ...log]);
   };
@@ -61,21 +54,27 @@ const App = () => {
     <Container className="App">
       <Items
         change={change}
+        bills={bills}
+        items={items}
         onClick={onClickItem}
+        onLog={onLog}
+        setItems={setItems}
+      ></Items>
+      <Monitor
+        change={change}
         onChange={onChange}
         onLog={onLog}
+        log={log}
         bills={bills}
-      ></Items>
-      <Monitor change={change} onChange={onChange} onLog={onLog} log={log} bills={bills}></Monitor>
+      ></Monitor>
       <Wallet
         change={change}
-        onLog={onLog}
         bills={bills}
-        onChange={onChange}
         clicked={clickedBill}
+        onLog={onLog}
+        onChange={onChange}
       ></Wallet>
     </Container>
   );
-};
-
+}
 export default App;

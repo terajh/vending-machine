@@ -51,15 +51,31 @@ const Items = props => {
 };
 
 const ItemWrap = styled.div`
-  display: flex;
-  box-sizing: border-box;
-  border: 10px solid black;
-  flex-wrap: wrap;
-  width: 575px;
-  align-content: flex-start;
-  border-radius: 10px 0px 0px 10px;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  @media (min-width: 320px) and (max-width: 480px) {
+    display: flex;
+    box-sizing: border-box;
+    border: 10px solid black;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+    align-content: flex-start;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  @media (min-width: 480px) {
+    display: flex;
+    box-sizing: border-box;
+    border: 10px solid black;
+    flex-wrap: wrap;
+    width: 575px;
+    height: 800px;
+    overflow-y: scroll;
+    align-content: flex-start;
+    border-radius: 10px 0px 0px 10px;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
 `;
 const OneItem = styled.div`
   width: 140px;

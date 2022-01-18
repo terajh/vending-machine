@@ -46,11 +46,24 @@ function App() {
 }
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 50px;
-  color: #fcfcfc;
-  font-size: 700;
+  @media (min-width: 480px) {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 50px;
+    color: #fcfcfc;
+    font-size: 700;
+    min-width: 1200px;
+    overflow: hidden;
+  }
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+    color: #fcfcfc;
+    align-items: center;
+  }
 `;
 export default App;

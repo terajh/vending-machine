@@ -29,10 +29,18 @@ const Monitor = () => {
 };
 
 const MonitorTitle = styled.h1`
-  font-size: xx-large;
-  font-weight: 600;
-  position: fixed;
-  top: 65px;
+  @media (min-width: 320px) and (max-width: 480px) {
+    top: 10px;
+    font-size: large;
+    font-weight: 600;
+    position: absolute;
+  }
+  @media (min-width: 480px) {
+    top: 65px;
+    font-size: xx-large;
+    font-weight: 600;
+    position: absolute;
+  }
 `;
 const ChangeScreen = styled.div`
   height: 30px;
@@ -65,16 +73,33 @@ const LogScreen = styled.div`
   border: 1px solid gray;
 `;
 const ScreenWrap = styled.div`
-  width: 340px;
-  height: 800px;
-  padding: 20px;
-  border: 10px solid black;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 0px 10px 10px 0px;
+  @media (min-width: 320px) and (max-width: 480px) {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    padding-top: 50px;
+    border: 10px solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  @media (min-width: 480px) {
+    position: relative;
+    width: 340px;
+    height: 800px;
+    padding: 20px;
+    border: 10px solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0px 10px 10px 0px;
+  }
 `;
 export default Monitor;

@@ -56,39 +56,88 @@ const Wallet = props => {
 };
 
 const BillWrap = styled.div`
-  width: 250px;
-  padding-top: 30px;
-  box-sizing: border-box;
-  border: 1px solid gray;
-  margin-left: 10px;
-  background: rgba(0, 0, 0, 0.5);
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100%;
+    padding-top: 30px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+  }
+  @media (min-width: 480px) {
+    width: 250px;
+    height: 800px;
+    padding-top: 30px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    margin-left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+  }
 `;
 const BillBlock = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 10px;
+  @media (min-width: 320px) and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+  }
+  @media (min-width: 480px) {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
 `;
 const BillWon = styled.div`
-  border: 1px solid gray;
-  width: 100px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  border-radius: 10px;
+  @media (min-width: 320px) and (max-width: 480px) {
+    font-size: xx-small;
+    border: 1px solid gray;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  @media (min-width: 480px) {
+    border: 1px solid gray;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+  }
+
   cursor: pointer;
   :hover {
     background: rgba(0, 150, 255, 0.5);
   }
 `;
 const SelectedBillWon = styled.div`
-  border: 1px solid red;
-  width: 100px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  border-radius: 10px;
+  @media (min-width: 320px) and (max-width: 480px) {
+    font-size: xx-small;
+    border: 1px solid red;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  @media (min-width: 480px) {
+    border: 1px solid red;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+  }
 `;
 const BillResult = styled.div`
+  @media (min-width: 320px) and (max-width: 480px) {
+    align-self: flex-start;
+    width: 100%;
+  }
   text-align: center;
   height: 40px;
   line-height: 40px;
@@ -98,12 +147,23 @@ const BillResult = styled.div`
   background: rgba(200, 200, 255, 0.5);
 `;
 const BillCount = styled.div`
-  border: 1px solid gray;
-  width: 100px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  border-radius: 10px;
+  @media (min-width: 320px) and (max-width: 480px) {
+    border: 1px solid gray;
+    font-size: xx-small;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  @media (min-width: 480px) {
+    border: 1px solid gray;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+  }
 `;
 
 export default Wallet;

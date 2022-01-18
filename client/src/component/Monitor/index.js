@@ -33,6 +33,7 @@ const MonitorTitle = styled.h1`
     top: 10px;
     font-size: large;
     font-weight: 600;
+    color: #005282;
     position: absolute;
   }
   @media (min-width: 480px) {
@@ -79,7 +80,7 @@ const ScreenWrap = styled.div`
     height: 300px;
     padding: 20px;
     padding-top: 50px;
-    border: 10px solid black;
+    border: 10px solid red;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

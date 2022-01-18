@@ -54,7 +54,7 @@ const ItemWrap = styled.div`
   @media (min-width: 320px) and (max-width: 480px) {
     display: flex;
     box-sizing: border-box;
-    border: 10px solid black;
+    border: 10px solid red;
     flex-wrap: wrap;
     width: 100%;
     height: 400px;

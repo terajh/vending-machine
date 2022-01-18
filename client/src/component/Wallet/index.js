@@ -60,7 +60,7 @@ const BillWrap = styled.div`
     width: 100%;
     padding-top: 30px;
     box-sizing: border-box;
-    border: 1px solid gray;
+    border: 1px solid red;
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-wrap: wrap;

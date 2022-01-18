@@ -45,13 +45,13 @@ const ItemPrice = styled.div`
 const Item = props => {
   const { change } = props.info;
   const { price, name, count } = props.info.item;
-  const { onSelect } = props;
+  const { onSelect, update } = props;
   const onClickItem = () => {
     onSelect(price, name, count);
   };
   return (
     <OneItem>
-      {change >= price && count > 0 ? (
+      {!update && change >= price && count > 0 ? (
         <SelectedItemName onClick={onClickItem}>{name}</SelectedItemName>
       ) : (
         <ItemName onClick={onClickItem}>{name}</ItemName>
@@ -62,7 +62,7 @@ const Item = props => {
 };
 // 상품 화면
 const Items = props => {
-  const { change, onClick, onLog, items, setItems } = props;
+  const { change, onClick, onLog, items, setItems, update } = props;
 
   const selectItem = (price, name, count) => {
     if (count === 0) {
@@ -82,7 +82,12 @@ const Items = props => {
   return (
     <ItemWrap className="items">
       {items.map((item, idx) => (
-        <Item key={idx} info={{ item, change }} onSelect={selectItem}></Item>
+        <Item
+          key={idx}
+          info={{ item, change }}
+          onSelect={selectItem}
+          update={update}
+        ></Item>
       ))}
     </ItemWrap>
   );

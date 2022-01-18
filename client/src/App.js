@@ -12,6 +12,7 @@ const Container = styled.div`
 `;
 function App() {
   const mounted = useRef(false); // componentDidUpdate 위해 선언
+  const [update, setUpdate] = useState(false);
   const [clickedBill, setClickedBill] = useState(-1);
   const [change, setChange] = useState(0);
   const [bills, setBills] = useState(billList);
@@ -26,13 +27,15 @@ function App() {
   // componentDidUpdate
   useEffect(() => {
     if (!mounted.current) {
-      mounted.current = true;
+      mounted.current = true; // mount
     } else {
+      setUpdate(true);
       setTimeout(() => {
         setChange(0);
         setClickedBill(-1);
         setBills(transBills(bills, change));
         setLog(["잔돈 반환됨", ...log]);
+        setUpdate(false);
       }, 2000);
     }
   }, [items]);
@@ -43,10 +46,8 @@ function App() {
     setBills(newBills);
   };
   const onClickItem = price => {
-    if (mounted.current) return;
     setChange(change - price);
   };
-
   const onLog = message => {
     setLog([message, ...log]);
   };
@@ -56,6 +57,7 @@ function App() {
         change={change}
         bills={bills}
         items={items}
+        update={update}
         onClick={onClickItem}
         onLog={onLog}
         setItems={setItems}

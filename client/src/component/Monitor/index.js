@@ -26,6 +26,7 @@ const LogScreen = styled.div`
 `;
 const ScreenWrap = styled.div`
   width: 30%;
+  height: 800px;
   padding: 20px;
   border: 10px solid black;
   box-sizing: border-box;

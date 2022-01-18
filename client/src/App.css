@@ -1,0 +1,10 @@
+html,
+body,
+#root {
+  width: 100%;
+  margin: 0px;
+}
+* {
+  /* border: 1px solid black; */
+  box-sizing: border-box;
+}

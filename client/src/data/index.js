@@ -1,0 +1,33 @@
+export const billList = [
+  { won: 10000, count: 3 },
+  { won: 5000, count: 4 },
+  { won: 1000, count: 4 },
+  { won: 500, count: 5 },
+  { won: 100, count: 3 },
+  { won: 50, count: 4 },
+  { won: 10, count: 5 },
+];
+
+export const itemList = [
+  { name: "콜라", price: 500, count: 3 },
+  { name: "사이다", price: 1000, count: 3 },
+  { name: "맥주", price: 800, count: 3 },
+  { name: "크바스", price: 500, count: 3 },
+  { name: "청주", price: 500, count: 3 },
+  { name: "사케", price: 800, count: 3 },
+  { name: "황주", price: 700, count: 3 },
+  { name: "막걸리", price: 900, count: 3 },
+  { name: "벌꿀술", price: 500, count: 3 },
+  { name: "위스키", price: 1000, count: 3 },
+  { name: "브랜디", price: 800, count: 3 },
+  { name: "보드카", price: 500, count: 3 },
+  { name: "진", price: 500, count: 3 },
+  { name: "럼", price: 800, count: 3 },
+  { name: "데킬라", price: 700, count: 3 },
+  { name: "백주", price: 900, count: 3 },
+  { name: "소주", price: 5000, count: 3 },
+  { name: "큐라소", price: 5000, count: 3 },
+  { name: "비터스", price: 8000, count: 3 },
+  { name: "베르무트", price: 7000, count: 3 },
+  { name: "예거마이스터", price: 9000, count: 3 },
+];

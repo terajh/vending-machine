@@ -65,7 +65,7 @@ const Reducer = (state, action) => {
         ...state,
         change: 0,
         clickedBill: -1,
-        log: ["잔돈 반환됨", ...state.log],
+        log: ["> 잔돈 반환됨", ...state.log],
         bills: action.bills,
       };
     default:

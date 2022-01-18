@@ -10,12 +10,13 @@ const Monitor = () => {
   const clickSubmit = e => {
     dispatch({
       type: "RETURN_CHANGE",
-      log: "잔돈 반환됨",
+      log: "> 잔돈 반환됨",
       bills: transBills(bills, change),
     });
   };
   return (
     <ScreenWrap className="Monitor">
+      <MonitorTitle>자판기 머신</MonitorTitle>
       <ChangeScreen className="changes">{change} 원</ChangeScreen>
       <SubmitDiv onClick={clickSubmit}>반환</SubmitDiv>
       <LogScreen>
@@ -27,6 +28,12 @@ const Monitor = () => {
   );
 };
 
+const MonitorTitle = styled.h1`
+  font-size: xx-large;
+  font-weight: 600;
+  position: fixed;
+  top: 65px;
+`;
 const ChangeScreen = styled.div`
   height: 30px;
   width: 300px;
@@ -34,7 +41,8 @@ const ChangeScreen = styled.div`
   padding-right: 30px;
   box-sizing: border-box;
   text-align: right;
-  border: 1px solid black;
+  border-radius: 4px;
+  border: 1px solid gray;
 `;
 const SubmitDiv = styled.div`
   margin-top: 20px;
@@ -42,7 +50,7 @@ const SubmitDiv = styled.div`
   width: 100px;
   line-height: 30px;
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid gray;
   border-radius: 10px;
   cursor: pointer;
 `;
@@ -50,10 +58,11 @@ const LogScreen = styled.div`
   margin-top: 20px;
   height: 200px;
   width: 300px;
-  overflow-y: scroll;
+  overflow-y: hidden;
   padding: 5px;
+  border-radius: 4px;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid gray;
 `;
 const ScreenWrap = styled.div`
   width: 340px;
@@ -65,5 +74,7 @@ const ScreenWrap = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0px 10px 10px 0px;
 `;
 export default Monitor;

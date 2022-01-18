@@ -30,7 +30,7 @@ const Wallet = props => {
       change: change + parseInt(clickedValue),
       clickedIdx: info.idx,
       clickedBill: info.item.won,
-      log: `${clickedValue}이 투입됨`,
+      log: `> ${clickedValue}이 투입됨`,
     });
   };
   return (
@@ -59,8 +59,9 @@ const BillWrap = styled.div`
   width: 250px;
   padding-top: 30px;
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 1px solid gray;
   margin-left: 10px;
+  background: rgba(0, 0, 0, 0.5);
 `;
 const BillBlock = styled.div`
   display: flex;
@@ -68,12 +69,16 @@ const BillBlock = styled.div`
   margin-bottom: 10px;
 `;
 const BillWon = styled.div`
-  border: 1px solid black;
+  border: 1px solid gray;
   width: 100px;
   height: 50px;
   line-height: 50px;
   text-align: center;
   border-radius: 10px;
+  cursor: pointer;
+  :hover {
+    background: rgba(0, 150, 255, 0.5);
+  }
 `;
 const SelectedBillWon = styled.div`
   border: 1px solid red;
@@ -87,12 +92,13 @@ const BillResult = styled.div`
   text-align: center;
   height: 40px;
   line-height: 40px;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
   margin-top: 30px;
+  background: rgba(200, 200, 255, 0.5);
 `;
 const BillCount = styled.div`
-  border: 1px solid black;
+  border: 1px solid gray;
   width: 100px;
   height: 50px;
   line-height: 50px;

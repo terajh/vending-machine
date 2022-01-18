@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect, useRef } from "react";
-import { Wallet, Items, Monitor } from "./component";
+import { Wallet, Items, Monitor, BackGround } from "./component";
 import { useAppDispatch, useAppState } from "./context";
 
 import { transBills } from "./utils/bill";
@@ -34,11 +34,14 @@ function App() {
   }, [items]);
 
   return (
-    <Container className="App">
-      <Items></Items>
-      <Monitor></Monitor>
-      <Wallet></Wallet>
-    </Container>
+    <>
+      <BackGround></BackGround>
+      <Container className="App">
+        <Items></Items>
+        <Monitor></Monitor>
+        <Wallet></Wallet>
+      </Container>
+    </>
   );
 }
 
@@ -47,5 +50,7 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: 50px;
+  color: #fcfcfc;
+  font-size: 700;
 `;
 export default App;

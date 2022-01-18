@@ -27,7 +27,7 @@ const Items = props => {
   const selectItem = (price, name) => {
     dispatch({
       type: "SELECTED_ITEM",
-      log: `${name}가 선택됨`,
+      log: `> ${name}가 선택됨`,
       change: change - price,
       items: items.map(item => {
         if (item.name === name) return { name, price, count: item.count - 1 };
@@ -57,7 +57,9 @@ const ItemWrap = styled.div`
   flex-wrap: wrap;
   width: 575px;
   align-content: flex-start;
+  border-radius: 10px 0px 0px 10px;
   justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
 `;
 const OneItem = styled.div`
   width: 140px;
@@ -90,6 +92,9 @@ const SelectedItemName = styled.div`
   background-color: rgba(255, 0, 0, 0.3);
   pointer-events: auto;
   box-sizing: border-box;
+  :hover {
+    background: rgba(0, 150, 255, 0.5);
+  }
   cursor: pointer;
 `;
 const ItemPrice = styled.div`

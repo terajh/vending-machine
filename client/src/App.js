@@ -44,7 +44,8 @@ function App() {
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
+  margin-top: 50px;
 `;
 export default App;

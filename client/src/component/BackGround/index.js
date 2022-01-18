@@ -6,7 +6,7 @@ const BackGround = props => {
     <BackgroundView>
       <video width="320" height="240" autoPlay loop muted>
         <source
-          src="https://assets.codepen.io/3364143/7btrrd.mp4"
+          src="https://player.vimeo.com/external/499594106.hd.mp4?s=275368f554b977c8d814005d46e336856e1877f3&profile_id=170"
           type="video/mp4"
         />
         Your browser does not support the video tag.

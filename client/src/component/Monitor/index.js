@@ -1,5 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { transBills } from "../../utils/bill";
+import { useAppDispatch, useAppState } from "../../context";
+
+// 진행 화면
+const Monitor = props => {
+  const { change, bills, log } = useAppState();
+  const dispatch = useAppDispatch();
+  const clickSubmit = e => {
+    dispatch({
+      type: "RETURN_CHANGE",
+      log: "잔돈 반환됨",
+      bills: transBills(bills, change),
+    });
+  };
+  return (
+    <ScreenWrap className="Monitor">
+      <ChangeScreen className="changes">{change} 원</ChangeScreen>
+      <SubmitDiv onClick={clickSubmit}>반환</SubmitDiv>
+      <LogScreen>
+        {log.map((item, idx) => {
+          return <div key={idx}>{item}</div>;
+        })}
+      </LogScreen>
+    </ScreenWrap>
+  );
+};
 
 const ChangeScreen = styled.div`
   height: 30px;
@@ -31,42 +57,4 @@ const ScreenWrap = styled.div`
   border: 10px solid black;
   box-sizing: border-box;
 `;
-
-// 진행 화면
-const Monitor = props => {
-  const { change, log, onChange, bills, onLog } = props;
-  const clickSubmit = e => {
-    onChange(0, -1, transBills(bills, change));
-    onLog("잔돈 반환됨");
-  };
-  const transBills = (bills, change) => {
-    let curChange = change;
-    return bills
-      .sort((a, b) => {
-        return b.won - a.won;
-      })
-      .map(item => {
-        if (curChange > 0 && curChange >= item.won) {
-          const result = {
-            won: item.won,
-            count: item.count + parseInt(curChange / item.won),
-          };
-          curChange -= item.won * parseInt(curChange / item.won);
-          return result;
-        } else return item;
-      });
-  };
-  return (
-    <ScreenWrap className="Monitor">
-      <ChangeScreen className="changes">{change} 원</ChangeScreen>
-      <SubmitDiv onClick={clickSubmit}>반환</SubmitDiv>
-      <LogScreen>
-        {log.map((item, idx) => {
-          return <div key={idx}>{item}</div>;
-        })}
-      </LogScreen>
-    </ScreenWrap>
-  );
-};
-
 export default Monitor;

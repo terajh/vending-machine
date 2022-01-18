@@ -1,5 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useAppDispatch, useAppState } from "../../context";
+
+const Item = props => {
+  const { change, update } = useAppState();
+  const { price, name, count } = props.item;
+  const { onSelect } = props;
+  const onClickItem = () => {
+    onSelect(price, name);
+  };
+  return (
+    <OneItem>
+      {!update && change >= price && count > 0 ? (
+        <SelectedItemName onClick={onClickItem}>{name}</SelectedItemName>
+      ) : (
+        <ItemName>{name}</ItemName>
+      )}
+      <ItemPrice>{price}</ItemPrice>
+    </OneItem>
+  );
+};
+// 상품 화면
+const Items = props => {
+  const { change, items, update } = useAppState();
+  const dispatch = useAppDispatch();
+  const selectItem = (price, name) => {
+    dispatch({
+      type: "SELECTED_ITEM",
+      log: `${name}가 선택됨`,
+      change: change - price,
+      items: items.map(item => {
+        if (item.name === name) return { name, price, count: item.count - 1 };
+        else return item;
+      }),
+    });
+  };
+
+  return (
+    <ItemWrap className="items">
+      {items.map((item, idx) => (
+        <Item
+          key={idx}
+          item={item}
+          onSelect={selectItem}
+          update={update}
+        ></Item>
+      ))}
+    </ItemWrap>
+  );
+};
 
 const ItemWrap = styled.div`
   display: flex;
@@ -41,56 +90,5 @@ const SelectedItemName = styled.div`
 const ItemPrice = styled.div`
   text-align: center;
 `;
-
-const Item = props => {
-  const { change } = props.info;
-  const { price, name, count } = props.info.item;
-  const { onSelect, update } = props;
-  const onClickItem = () => {
-    onSelect(price, name, count);
-  };
-  return (
-    <OneItem>
-      {!update && change >= price && count > 0 ? (
-        <SelectedItemName onClick={onClickItem}>{name}</SelectedItemName>
-      ) : (
-        <ItemName onClick={onClickItem}>{name}</ItemName>
-      )}
-      <ItemPrice>{price}</ItemPrice>
-    </OneItem>
-  );
-};
-// 상품 화면
-const Items = props => {
-  const { change, onClick, onLog, items, setItems, update } = props;
-
-  const selectItem = (price, name, count) => {
-    if (count === 0) {
-      onLog(`${name} 재고가 없음`);
-      return;
-    }
-    onLog(`${name}가 선택됨`);
-    onClick(price);
-    setItems(
-      items.map(item => {
-        if (item.name === name) return { name, price, count: item.count - 1 };
-        else return item;
-      }),
-    );
-  };
-
-  return (
-    <ItemWrap className="items">
-      {items.map((item, idx) => (
-        <Item
-          key={idx}
-          info={{ item, change }}
-          onSelect={selectItem}
-          update={update}
-        ></Item>
-      ))}
-    </ItemWrap>
-  );
-};
 
 export default Items;

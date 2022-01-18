@@ -1,5 +1,59 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import styled from "styled-components";
+import { useAppDispatch, useAppState } from "../../context";
+
+const Bill = props => {
+  const { clickBill, clicked, info } = props;
+  return (
+    <BillBlock>
+      {clicked === info.item.won ? (
+        <SelectedBillWon onClick={e => clickBill(info)}>
+          {info.item.won}원
+        </SelectedBillWon>
+      ) : (
+        <BillWon onClick={e => clickBill(info)}>{info.item.won}원</BillWon>
+      )}
+      <BillCount>{info.item.count}개</BillCount>
+    </BillBlock>
+  );
+};
+// 지갑 화면
+const Wallet = props => {
+  const { change, clickedBill, bills } = useAppState();
+  const dispatch = useAppDispatch();
+  const clickBill = info => {
+    const clickedValue = info.item.won;
+    const clickedCount = info.item.count;
+    if (clickedCount <= 0) return;
+    dispatch({
+      type: "SELECTED_BILL",
+      change: change + parseInt(clickedValue),
+      clickedIdx: info.idx,
+      clickedBill: info.item.won,
+      log: `${clickedValue}이 투입됨`,
+    });
+  };
+  return (
+    <BillWrap className="wallet">
+      {bills.map((item, idx) => {
+        return (
+          <Bill
+            key={idx}
+            info={{ item, idx }}
+            clickBill={clickBill}
+            clicked={clickedBill}
+          ></Bill>
+        );
+      })}
+      <BillResult>
+        {bills.reduce((acc, cur) => {
+          return acc + cur.won * cur.count;
+        }, 0)}
+        원
+      </BillResult>
+    </BillWrap>
+  );
+};
 
 const BillWrap = styled.div`
   width: 20%;
@@ -42,54 +96,5 @@ const BillCount = styled.div`
   text-align: center;
   border-radius: 10px;
 `;
-const Bill = props => {
-  const { clickBill, clicked, info } = props;
-  return (
-    <BillBlock>
-      {clicked === info.item.won ? (
-        <SelectedBillWon onClick={e => clickBill(info)}>
-          {info.item.won}원
-        </SelectedBillWon>
-      ) : (
-        <BillWon onClick={e => clickBill(info)}>{info.item.won}원</BillWon>
-      )}
-      <BillCount>{info.item.count}개</BillCount>
-    </BillBlock>
-  );
-};
-// 지갑 화면
-const Wallet = props => {
-  const { change, onChange, clicked, bills, onLog } = props;
-  const clickBill = info => {
-    const clickedValue = info.item.won;
-    const clickedCount = info.item.count;
-    const clickedIdx = info.idx;
-
-    if (clickedCount <= 0) return;
-    bills[clickedIdx].count -= 1;
-    onLog(`${clickedValue}이 투입됨`);
-    onChange(change + parseInt(clickedValue), clickedValue, bills);
-  };
-  return (
-    <BillWrap className="wallet">
-      {bills.map((item, idx) => {
-        return (
-          <Bill
-            key={idx}
-            info={{ item, idx }}
-            clickBill={clickBill}
-            clicked={clicked}
-          ></Bill>
-        );
-      })}
-      <BillResult>
-        {bills.reduce((acc, cur) => {
-          return acc + cur.won * cur.count;
-        }, 0)}
-        원
-      </BillResult>
-    </BillWrap>
-  );
-};
 
 export default Wallet;

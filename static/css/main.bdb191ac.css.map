@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.bdb191ac.css","mappings":"AAAA,gBAIE,QAAW,CADX,UAEF,CACA,EAEE,qBACF","sources":["App.css"],"sourcesContent":["html,\nbody,\n#root {\n  width: 100%;\n  margin: 0px;\n}\n* {\n  /* border: 1px solid black; */\n  box-sizing: border-box;\n}\n"],"names":[],"sourceRoot":""}

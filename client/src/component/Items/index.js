@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useAppDispatch, useAppState } from "../../context";
 
@@ -55,34 +55,39 @@ const ItemWrap = styled.div`
   box-sizing: border-box;
   border: 10px solid black;
   flex-wrap: wrap;
-  width: 50%;
+  width: 575px;
   align-content: flex-start;
   justify-content: center;
 `;
 const OneItem = styled.div`
-  width: 150px;
+  width: 140px;
+  height: 60px;
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 15px;
   box-sizing: border-box;
+  border: 3px solid gray;
+  border-radius: 10px;
   margin-bottom: 15px;
 `;
 const ItemName = styled.div`
-  width: 150px;
+  /* width: 150px; */
   height: 35px;
   line-height: 35px;
   text-align: center;
-  border: 1px solid black;
+  border-radius: 10px;
+  border-bottom: 3px solid gray;
   box-sizing: border-box;
   pointer-events: none;
 `;
 const SelectedItemName = styled.div`
-  width: 150px;
+  /* width: 150px; */
   height: 35px;
   line-height: 35px;
-
   text-align: center;
-  border: 3px solid red;
+  border-radius: 10px;
+  border-bottom: 3px solid red;
+  background-color: rgba(255, 0, 0, 0.3);
   pointer-events: auto;
   box-sizing: border-box;
   cursor: pointer;

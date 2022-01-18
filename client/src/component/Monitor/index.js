@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { transBills } from "../../utils/bill";
 import { useAppDispatch, useAppState } from "../../context";
 
 // 진행 화면
-const Monitor = props => {
+const Monitor = () => {
   const { change, bills, log } = useAppState();
   const dispatch = useAppDispatch();
   const clickSubmit = e => {
@@ -29,6 +29,7 @@ const Monitor = props => {
 
 const ChangeScreen = styled.div`
   height: 30px;
+  width: 300px;
   line-height: 30px;
   padding-right: 30px;
   box-sizing: border-box;
@@ -38,23 +39,31 @@ const ChangeScreen = styled.div`
 const SubmitDiv = styled.div`
   margin-top: 20px;
   height: 30px;
+  width: 100px;
   line-height: 30px;
   text-align: center;
   border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
 `;
 const LogScreen = styled.div`
   margin-top: 20px;
-  height: 150px;
+  height: 200px;
+  width: 300px;
   overflow-y: scroll;
   padding: 5px;
   box-sizing: border-box;
   border: 1px solid black;
 `;
 const ScreenWrap = styled.div`
-  width: 30%;
+  width: 340px;
   height: 800px;
   padding: 20px;
   border: 10px solid black;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 `;
 export default Monitor;

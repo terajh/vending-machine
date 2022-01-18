@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useAppDispatch, useAppState } from "../../context";
 
@@ -56,7 +56,8 @@ const Wallet = props => {
 };
 
 const BillWrap = styled.div`
-  width: 20%;
+  width: 250px;
+  padding-top: 30px;
   box-sizing: border-box;
   border: 1px solid black;
   margin-left: 10px;
@@ -87,6 +88,8 @@ const BillResult = styled.div`
   height: 40px;
   line-height: 40px;
   border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-top: 30px;
 `;
 const BillCount = styled.div`
   border: 1px solid black;
